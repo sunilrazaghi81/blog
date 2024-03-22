@@ -1,0 +1,290 @@
+{% load static %}
+<script src="{% static 'blog.js' %}"></script>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Programming Blog</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Blog Template" />
+    <meta name="author" content="Xiaoying Riley at 3rd Wave Media" />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <!-- FontAwesome JS-->
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.7.1/js/all.js"
+      integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Theme CSS -->
+    <link
+      id="theme-style"
+      rel="stylesheet"
+      href="{% static 'assets/css/theme-1.css' %}"
+    />
+    <style>
+      .space
+      {
+        margin-top : 150px;
+      }
+      .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+      }
+      
+      .pagination a {
+        color: #00ff00;
+        padding: 8px 16px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+        border-radius: 50%; 
+        margin: 0 5px; 
+      }
+      
+      .pagination a:hover {
+        background-color: #00ff0066; 
+      }
+      
+      .pagination a.active {
+        background-color: #00ff00;
+        color: #ffffff;
+      }
+      
+  
+        .form-style-6{
+          font: 95% Arial, Helvetica, sans-serif;
+          max-width: 400px;
+          margin: 10px auto;
+          padding: 16px;
+          background: #F7F7F7;
+        }
+        .form-style-6 h1{
+          background: #00cc44;
+          padding: 20px 0;
+          font-size: 140%;
+          font-weight: 300;
+          text-align: center;
+          color: #fff;
+          margin: -16px -16px 16px -16px;
+        }
+        .form-style-6 input[type="text"],
+        .form-style-6 input[type="date"],
+        .form-style-6 input[type="datetime"],
+        .form-style-6 input[type="email"],
+        .form-style-6 input[type="number"],
+        .form-style-6 input[type="search"],
+        .form-style-6 input[type="time"],
+        .form-style-6 input[type="url"],
+        .form-style-6 textarea,
+        .form-style-6 select 
+        {
+          -webkit-transition: all 0.30s ease-in-out;
+          -moz-transition: all 0.30s ease-in-out;
+          -ms-transition: all 0.30s ease-in-out;
+          -o-transition: all 0.30s ease-in-out;
+          outline: none;
+          box-sizing: border-box;
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          width: 100%;
+          background: #fff;
+          margin-bottom: 4%;
+          border: 1px solid #ccc;
+          padding: 3%;
+          color: #555;
+          font: 95% Arial, Helvetica, sans-serif;
+        }
+        .form-style-6 input[type="text"]:focus,
+        .form-style-6 input[type="date"]:focus,
+        .form-style-6 input[type="datetime"]:focus,
+        .form-style-6 input[type="email"]:focus,
+        .form-style-6 input[type="number"]:focus,
+        .form-style-6 input[type="search"]:focus,
+        .form-style-6 input[type="time"]:focus,
+        .form-style-6 input[type="url"]:focus,
+        .form-style-6 textarea:focus,
+        .form-style-6 select:focus
+        {
+          box-shadow: 0 0 5px #43D1AF;
+          padding: 3%;
+          border: 1px solid #43D1AF;
+        }
+        
+        .form-style-6 input[type="submit"],
+        .form-style-6 input[type="button"]{
+          box-sizing: border-box;
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          width: 100%;
+          padding: 3%;
+          background: #43D1AF;
+          border-bottom: 2px solid #30C29E;
+          border-top-style: none;
+          border-right-style: none;
+          border-left-style: none;	
+          color: #fff;
+        }
+        .form-style-6 input[type="submit"]:hover,
+        .form-style-6 input[type="button"]:hover{
+          background: #2EBC99;
+        }
+        
+        
+        
+    </style>
+  </head>
+
+  <body>
+    <header class="header text-center">
+      {% if user.is_authenticated %}
+      <h1 class="blog-name pt-lg-4 mb-0">
+        <a href="#">{{user.username}}</a>
+      </h1>
+      {% endif %}
+
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navigation"
+          aria-controls="navigation"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div id="navigation" class="collapse navbar-collapse flex-column">
+          <div class="profile-section pt-3 pt-lg-0">
+            
+            <div class="bio mb-3">
+              <p> سونیل رزاقی هستم برنامه نویس  جنگو از طریق لینک زیر میتوانید با من در ارتباط باشید</p>
+            
+              <br /><a
+                href="{% url 'blog:about' %}"
+                >Find out more about me</a
+              >
+            </div>
+            <!--//bio-->
+            <ul class="social-list list-inline py-3 mx-auto">
+              <li class="list-inline-item">
+                <a href="https://www.instagram.com/bs.raz" target="_blank"><i class="fab fa-instagram fa-fw"></i></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#"><i class="fab fa-linkedin-in fa-fw"></i></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#"><i class="fab fa-github-alt fa-fw"></i></a>
+              </li>
+
+              <li class="list-inline-item">
+                <a href="#"><i class="fab fa-telegram fa-fw"></i></a>
+              </li>
+              
+            </ul>
+            <!--//social-list-->
+            <hr />
+          </div>
+          <!--//profile-section-->
+
+          <ul class="navbar-nav flex-column text-left">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'blog:list' %}"
+                ><i class="fas fa-home fa-fw mr-2"></i>Blog Home
+                <span class="sr-only">(current)</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'blog:post_create' %}"
+                ><i class="fas fa-bookmark fa-fw mr-2"></i>Add Post</a
+              >
+            </li>
+            
+
+            {% if user.is_authenticated %}
+              <li class="nav-item">
+                <i class="fas fa-user fa-fw mr-2"></i>
+                <form action="{% url 'accounts:logout' %}" , method="POST">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-primary">logout</button>
+                </form>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'accounts:login' %}"
+                  ><i class="fas fa-user fa-fw mr-2"></i>login</a
+                >
+              </li>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'accounts:signup' %}"
+                ><i class="fas fa-user fa-fw mr-2"></i>Singup</a
+              >
+            </li>
+              {% endif %}
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <!--end header-->
+    <!--Search-->
+    <div class="main-wrapper">
+    {% block head %}
+    <section class="cta-section theme-bg-light py-5">
+      <div class="container text-center">
+        <h2 class="heading">Programming Blog</h2>
+        <div class="intro">
+          Search
+        </div>
+        <form class="signup-form form-inline justify-content-center pt-3" method='GET'>
+          <div class="form-group">
+            <label class="sr-only" for="semail">Search</label>
+            <input
+              type="text"
+              name="q"
+              class="form-control mr-md-1 semail"
+              
+            />
+          </div>
+          <button  class="btn btn-primary">Search</button>
+        </form>
+      </div>
+      <!--//container-->
+    </section>
+    {% endblock %}
+
+      {% block content %} {% endblock content %}
+
+      <footer class="footer text-center py-2 theme-bg-dark">
+        <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can buy the commercial license via our website: themes.3rdwavemedia.com */-->
+        <small class="copyright"
+          >Designed with <i class="fas fa-heart" style="color: #fb866a"></i> by
+          <a href="http://themes.3rdwavemedia.com" target="_blank"
+            >Xiaoying Riley</a
+          >
+          for developers</small
+        >
+      </footer>
+    </div>
+    <!--//main-wrapper-->
+
+    <!-- Javascript -->
+    <script src="assets/plugins/jquery-3.3.1.min.js"></script>
+    <script src="assets/plugins/popper.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
+    <script src="assets/js/demo/style-switcher.js"></script>
+    <script>
+    
+    </script>
+
+  </body>
+</html>

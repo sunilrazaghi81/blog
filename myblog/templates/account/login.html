@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+  <div class="space"></div>
+{% endblock head %}
+  
+
+{% block content %} 
+<div class="form-style-6">
+<h2>login</h2>
+<form method="post" class="form-horizontal">
+  
+  {% for field in form %}
+    <p>
+        {% csrf_token %}
+      {{ field.label_tag }}<br>
+      {{ field }}
+      {% if field.help_text %}
+        <small style="color: grey">{{ field.help_text }}</small>
+      {% endif %}
+      {% for error in field.errors %}
+        <p style="color: red">{{ error }}</p>
+      {% endfor %}
+    </p>
+  {% endfor %}
+  <button type="submit" class="btn btn-primary">login</button>
+</form>
+<br>
+<a href="{% url 'accounts:rest_password' %}">forgot password</a>
+<br>
+<a href="{% url 'accounts:change_password' %}">change password</a>
+</div>
+
+
+
+{% endblock content %}

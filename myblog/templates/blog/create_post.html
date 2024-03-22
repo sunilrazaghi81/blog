@@ -1,0 +1,19 @@
+{% extends 'base.html' %} {% block head %}
+<div class="container text-center">
+  <h2 class="heading">Programming Blog</h2>
+  <div class="intro">
+    <br /><br /><br /><br />
+
+    {% endblock %} {% block content %}
+
+    <div class="form-style-6">
+      <h1>New Post</h1>
+      <form method="post" class="form-horizontal" enctype="multipart/form-data">
+        {% csrf_token %} {{form.media}} {{form}}
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+    {% endblock %}
+  </div>
+</div>

@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+  {% block content %}
+  {% if s %}
+    {% for posts in s %}
+    
+    <section class="blog-list px-3 py-5 p-md-5">
+      <div class="container">
+        <div class="item mb-5">
+          <div class="media">
+            <img
+              class="mr-3 img-fluid post-thumb d-none d-md-flex"
+              src="{{MEDIA_URL}}{{posts.image.url}}"
+              alt="image"
+            />
+            <div class="media-body">
+              <h3 class="title mb-1">
+                <a href="{{ post.get_absolute_url }}"
+                  >{{posts.title}}</a
+                >
+                <!--title blog-->
+              </h3>
+              <div class="meta mb-1">
+                <span class="date">Published {{posts.publish.year}}</span
+                ><span class="time">5 min read</span
+                ><span class="comment"><a href="#">comment: {% with comments|length as comments_length %}
+                  {{ comments_length }}
+             {% endwith %}
+              </div>
+              <!--time published blog-->
+              
+              <a class="more-link" href="{{ posts.get_absolute_url }}">Read more &rarr;</a>
+            </div>
+            <!--//media-body-->
+          </div>
+          <!--//media-->
+        </div>
+      </section>
+      {% endfor %}
+        <!-- ssssssssssssssssssssss-->
+
+    {% else %}
+          {% for post in posts %}
+          <section class="blog-list px-3 py-5 p-md-5">
+          <div class="container">
+            <div class="item mb-5">
+              <div class="media">
+                <img
+                  class="mr-3 img-fluid post-thumb d-none d-md-flex"
+                  src="{{MEDIA_URL}}{{post.image.url}}"
+                  alt="image"
+                />
+                <div class="media-body">
+                  <h3 class="title mb-1">
+                    <a href="{{ post.get_absolute_url }}"
+                      >{{post.title}}</a
+                    >
+                    <!--title blog-->
+                  </h3>
+                  <div class="meta mb-1">
+                    <span class="date">Published {{post.publish.year}}</span
+                    ><span class="time">5 min read</span
+                    ><span class="comment"><a href="#">comment: {% with comments|length as comments_length %}
+                      {{ comments_length }}
+                 {% endwith %}
+                    
+                      </a></span>
+                  </div>
+                  <!--time published blog-->
+                  
+                  <!--body blog-->
+                  <a class="more-link" href="{{ post.get_absolute_url }}">Read more &rarr;</a>
+                </div>
+                <!--//media-body-->
+              </div>
+              <!--//media-->
+            </div>
+          </section>
+          {% endfor %}
+    <!-- ssssssssssssssssssssss-->
+    <!--//item-->
+    <section class="blog-list px-3 py-5 p-md-5">
+      <div class="pagination">
+      <nav class="blog-list px-3 py-5 p-md-5" >
+        <ul class="blog-nav nav nav-justified my-5" >
+          
+          {% if posts.has_previous  %}
+          <li class="page-item"><a class="active" href="?page={{posts.previous_page_number}}">Previous</a></li>
+          {% endif %}
+          
+          {% for num in posts.paginator.page_range %}
+          
+          {% if posts.number == num %}
+ 
+          <li class="page-item active"><a class="active"  href="{% url 'blog:list' %}?page={{num}}">{{num}}</a></li>
+          
+          {% endif %}
+          {% endfor %}
+          
+          
+          {% if posts.has_next %}
+          <li class="page-item"><a class="active"  href="?page={{posts.next_page_number}}">Next</a></li>
+          {% endif %}
+            
+          
+        </ul>
+      </nav>
+    </div>
+    </div>
+  </section>
+  {% endif %}
+  {% endblock content %}
+    
+  
+ 
