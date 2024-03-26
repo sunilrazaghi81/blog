@@ -13,7 +13,7 @@ class Post(models.Model):
 
 ```
 
-use in viwe:
+use in views:
 ```python
 def list_post(request, tag_slug=None):  
     posts = Post.published.all()
