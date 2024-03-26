@@ -1,10 +1,11 @@
 # Programming blog
 
+###taggit
 ```bash
 pip install django-taggit
 ```
 
-use:
+use in model:
 ```python
 from taggit.managers import TaggableManager
 
@@ -24,12 +25,14 @@ def list_post(request, tag_slug=None):
     return render(request, 'blog/yourpage.html', context)
 ```
 
+
+###ckeditor
 ```bash
 pip install django-ckeditor
 ```
 
-use:
-```pyhton
+use in model:
+```python
 from ckeditor.fields import RichTextField
 
 class Post(models.Model):
