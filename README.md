@@ -1,6 +1,6 @@
 # Programming blog
 
-###taggit
+### taggit
 ```bash
 pip install django-taggit
 ```
@@ -26,7 +26,7 @@ def list_post(request, tag_slug=None):
 ```
 
 
-###ckeditor
+### ckeditor
 ```bash
 pip install django-ckeditor
 ```
