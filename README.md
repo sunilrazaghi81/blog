@@ -1,28 +1,11 @@
 # Programming blog
 
+
+To use this project، we will package taggit
+
 ### taggit
 ```bash
 pip install django-taggit
-```
-
-use in model:
-```python
-from taggit.managers import TaggableManager
-
-class Post(models.Model):
-    tags = TaggableManager()
-
-```
-
-use in views:
-```python
-def list_post(request, tag_slug=None):  
-    posts = Post.published.all()
-    #taggit
-    if tag_slug:
-        tag = get_object_or_404(Tag, slug=tag_slug)
-        posts = posts.filter(tags__in=[tag])
-    return render(request, 'blog/yourpage.html', context)
 ```
 
 
